@@ -1,24 +1,9 @@
 package test;
 
 import me.yum1era.jvmti.*;
-import me.yum1era.jvmti.event.JvmtiEvent;
-import me.yum1era.jvmti.event.JvmtiEventCallbacks;
-import me.yum1era.jvmti.event.JvmtiEventMode;
-import me.yum1era.jvmti.event.callbacks.JvmtiEventCallback;
-import me.yum1era.jvmti.instrument.impl.InstrumentationImpl;
-import me.yum1era.jvmti.utils.JavaUtil;
-import test.impl.TestTransformer;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.Arrays;
 
 
-public class Main {
+public class Demo1 {
     static {
         System.load("F:\\YMLDev\\YMLNativeBridge\\x64\\Release\\YMLNativeBridge.dll");
     }
@@ -33,7 +18,7 @@ public class Main {
         System.out.println(JvmtiEnv.GetCurrentThread());*/
         Test test = new Test();
         test.TransTest();
-        ClassLoader classLoader =   Main.class.getClassLoader();
+        ClassLoader classLoader =   Demo1.class.getClassLoader();
         NativeAgent nativeAgent = new NativeAgent();
         nativeAgent.setClassLoader("AppClassLoader");
         nativeAgent.retransf0rm("test.Test");

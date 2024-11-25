@@ -8,6 +8,9 @@ public class JvmtiEnv {
     private JvmtiEnv() {
     }
 
+    public static void loadDll(){
+        System.load("F:\\YMLDev\\YMLNativeBridge\\x64\\Release\\YMLNativeBridge.dll");
+    }
     // Threading
     public static native Thread GetCurrentThread();
 
