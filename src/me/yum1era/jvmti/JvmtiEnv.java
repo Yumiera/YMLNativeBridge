@@ -46,26 +46,5 @@ public class JvmtiEnv {
     public static native JvmtiError SetEventCallbacks(JvmtiEventCallbacks callbacks);
 
     public static native JvmtiError SetEventNotificationMode(JvmtiEventMode mode, JvmtiEvent type, Thread thread);
-    // Event
 
-    /*static {
-        try(InputStream inputStream = JvmtiEnv.class.getResourceAsStream("/jvmtiCpp.dll")) {
-            if(inputStream == null) throw new IOException("jvmtiCpp.dll not found!");
-
-            File file = File.createTempFile("jvmtiCpp", ".dll");
-            try(FileOutputStream outputStream = new FileOutputStream(file)) {
-                byte[] tmp = new byte[1024];
-
-                int read;
-                while((read = inputStream.read(tmp)) != -1)
-                    outputStream.write(tmp, 0, read);
-            }
-            file.deleteOnExit();
-
-            System.load(file.getAbsolutePath());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

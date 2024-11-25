@@ -7,11 +7,6 @@ import me.yum1era.jvmti.instrument.Instrumentation;
 
 public class InstrumentationImpl implements Instrumentation
 {
-    static {
-        //System.load("F:\\ShellSock\\ShellSockNative\\x64\\Release\\ShellSockNative.dll");
-        System.load("C:\\ShellSockNative.dll");
-    }
-
     @Override
     public ClassTransformer[] getTransformers() {
         return NativeAccess.getTransformersAsArray();
@@ -25,6 +20,9 @@ public class InstrumentationImpl implements Instrumentation
 
     @Override
     public native Class<?>[] getLoadedClasses(ClassLoader classLoader);
+
+    @Override
+    public native void setClassLoader(String classLoader);
 
     @Override
     public void addTransformer(final ClassTransformer classTransformer) {;

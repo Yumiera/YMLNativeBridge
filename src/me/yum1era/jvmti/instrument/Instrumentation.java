@@ -12,4 +12,6 @@ public interface Instrumentation
     Class<?>[] getLoadedClasses(final ClassLoader classLoader);
 
     void addTransformer(final ClassTransformer classTransformer);
+
+    void setClassLoader(String classLoader);
 }

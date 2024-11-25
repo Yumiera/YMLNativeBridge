@@ -1,5 +1,6 @@
 package me.yum1era.jvmti.utils;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -40,6 +41,56 @@ public  class JavaUtil
 
             System.err.println("Exception: " + newThrowable.toString());
             Arrays.stream(throwable.getStackTrace()).forEach(stackTraceElement -> System.err.println("at " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName() + " (" + stackTraceElement.getFileName() + ":" + stackTraceElement.getLineNumber() + ")"));
+        }
+    }
+
+    public static String getClassName(Class clazz){
+     return clazz.getName().replaceAll("\\.", "/");
+    }
+
+    public static String getMethodSignature(Method method) {
+        StringBuilder signature = new StringBuilder();
+
+        // 添加参数类型
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        signature.append("(");
+        for (Class<?> paramType : parameterTypes) {
+            signature.append(getTypeDescriptor(paramType));
+        }
+        signature.append(")");
+
+        // 添加返回类型
+        Class<?> returnType = method.getReturnType();
+        signature.append(getTypeDescriptor(returnType));
+
+        return signature.toString();
+    }
+
+    public static String getTypeDescriptor(Class<?> type) {
+        if (type.isArray()) {
+            return "[" + getTypeDescriptor(type.getComponentType());
+        }
+        switch (type.getSimpleName()) {
+            case "void":
+                return "V";
+            case "boolean":
+                return "Z";
+            case "char":
+                return "C";
+            case "byte":
+                return "B";
+            case "short":
+                return "S";
+            case "int":
+                return "I";
+            case "long":
+                return "J";
+            case "float":
+                return "F";
+            case "double":
+                return "D";
+            default:
+                return "L" + type.getName().replace('.', '/') + ";";
         }
     }
 }
